@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Asteroid
+  - Bullet
+  - Bubble
   layers:
   - Default
   - TransparentFX
@@ -44,6 +48,9 @@ TagManager:
   - name: Background
     uniqueID: 1572063961
     locked: 0
-  - name: Player
+  - name: Midground
     uniqueID: 825276393
+    locked: 0
+  - name: Foregroud
+    uniqueID: 1934705715
     locked: 0

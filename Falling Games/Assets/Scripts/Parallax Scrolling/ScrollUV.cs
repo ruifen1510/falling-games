@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScrollUV : MonoBehaviour
 {
     private SpriteRenderer bg;
+    private Material mat;
     private Vector2 offset;
 
     void Start()
@@ -14,9 +15,12 @@ public class ScrollUV : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        offset = new Vector2(offset.x += x * Time.deltaTime * 0.5f, offset.y += y * Time.deltaTime * 1.5f);
-        bg.material.SetTextureOffset("_MainTex", offset);
+        mat = bg.material;
+        offset = mat.mainTextureOffset;
+
+        offset.x = transform.position.x / transform.localScale.x / 2f;
+        offset.y = transform.position.y / transform.localScale.y / 2f;
+
+        mat.mainTextureOffset = offset;
     }
 }
