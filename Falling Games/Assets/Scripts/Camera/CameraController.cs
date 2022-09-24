@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    private Vector3 targetPos;
+    
     [SerializeField] private Transform target;
-    Vector3 targetPos;
 
     void FixedUpdate()
     {

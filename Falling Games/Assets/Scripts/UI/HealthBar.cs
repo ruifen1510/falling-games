@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 public class HealthBar : MonoBehaviour
 {
     private Image healthBar;
-    private float maxHealth = 100f;
+    private float maxHealth;
     public static float health;
-
 
     void Start()
     {
+        maxHealth = 100f;
         healthBar = GetComponent<Image>();
         health = maxHealth;
     }
@@ -25,18 +25,15 @@ public class HealthBar : MonoBehaviour
 
     void ReduceHealthBar()
     {
-        if(ShieldBar.shield == 0)
-        {
             healthBar.fillAmount = health / maxHealth;
             //Debug.Log(health);
-        }
     }
 
     void PlayerDies()
     {
         if(health <= 0)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
     }
 }

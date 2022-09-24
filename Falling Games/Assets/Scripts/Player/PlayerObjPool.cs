@@ -38,12 +38,6 @@ public class PlayerObjPool : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-
         return null;
-    }
-
-    void Update()
-    {
-        
     }
 }

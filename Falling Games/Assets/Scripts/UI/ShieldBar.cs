@@ -5,19 +5,27 @@ using UnityEngine.UI;
 
 public class ShieldBar : MonoBehaviour
 {
-    private Image shieldBar;
-    private float maxShield = 100f;
+    public static Image shieldBar;
     public static float shield;
+    
+    [SerializeField] private float fillSpeed;
 
     void Start()
     {
         shieldBar = GetComponent<Image>();
-        shield = maxShield;
+        shield = 0f;
+        shieldBar.fillAmount = shield;
     }
 
     void Update()
     {
-        shieldBar.fillAmount = shield / maxShield;
-        Debug.Log(shield);
+        shieldBar.fillAmount = shieldBar.fillAmount + shield + fillSpeed * Time.deltaTime;
+
+    }
+
+    public static void Reset()
+    {
+        if (shieldBar.fillAmount == 1f)
+        shieldBar.fillAmount = 0f;
     }
 }

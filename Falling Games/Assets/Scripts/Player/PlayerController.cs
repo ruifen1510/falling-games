@@ -10,30 +10,30 @@ public class PlayerController : MonoBehaviour
     //movement
     private float horizontalInput;
     private float verticalInput;
-    [SerializeField] private float speed = 2f;
+    
+    [SerializeField] private float movingSpeed = 2f;
 
     //rotation
     private Vector2 mousePos;
 
     //shooting
-    [SerializeField] private Transform shootingPoint;
-    [SerializeField] private float fireRate = 0.3f;
     private float nextFire;
 
+    [SerializeField] private Transform shootingPoint;
+    [SerializeField] private float fireTime = 0.3f;
+
     //bubble shield
-    /*[SerializeField] private GameObject bubble;
-    private GameObject instance;
-    private bool isShieldActive;*/
-    //[SerializeField] private Transform bubblePoint;
+    public static bool isShieldActive;
+    
+    [SerializeField] private GameObject bubbleShield;
 
     void Start()
     {
         cam = Camera.main;
         rgb = GetComponent<Rigidbody2D>();
 
-        //bubble.SetActive(false);
-        /*instance = (GameObject)Instantiate(bubble); //Spawn a copy of 'prefab' and store a reference to it.
-        instance.SetActive(false);*/
+        isShieldActive = false;
+        bubbleShield.SetActive(false);
     }
 
     void Update()
@@ -48,41 +48,36 @@ public class PlayerController : MonoBehaviour
         //shooting
         if(Input.GetMouseButtonDown(0) && Time.time > nextFire)
         {
-            nextFire = Time.time + fireRate;
-            Shoot();
+            nextFire = Time.time + fireTime;
+            
+            GameObject bullet = PlayerObjPool.instance.GetPooledObj();
+
+            bullet.transform.position = shootingPoint.position;
+            bullet.transform.rotation = shootingPoint.rotation;
+            bullet.SetActive(true);
         }
 
         //bubble shield
-        /*if(Input.GetKey(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            instance.SetActive(true);
-            instance.transform.parent = gameObject.transform;
-            instance.transform.position = gameObject.transform.position;
-            Debug.Log("activated");
-        }*/
+            if (!isShieldActive && ShieldBar.shieldBar.fillAmount == 1f)
+            {
+                bubbleShield.SetActive(true);
+                isShieldActive = true;
+                
+                ShieldBar.Reset();
+            }
+        }
     }
 
     void FixedUpdate()
     {
         //movement
-        rgb.velocity = new Vector2(horizontalInput * speed, verticalInput * speed);
+        rgb.velocity = new Vector2(horizontalInput * movingSpeed, verticalInput * movingSpeed);
 
         //rotation
         Vector2 lookDir = mousePos - rgb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rgb.rotation = angle;
-    }
-
-    //shooting
-    private void Shoot()
-    {
-        GameObject bullet = PlayerObjPool.instance.GetPooledObj();
-
-        if(bullet != null)
-        {
-            bullet.transform.position = shootingPoint.position;
-            bullet.transform.rotation = shootingPoint.rotation;
-            bullet.SetActive(true);
-        }
     }
 }

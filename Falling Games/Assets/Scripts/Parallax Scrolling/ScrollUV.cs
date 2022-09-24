@@ -7,6 +7,8 @@ public class ScrollUV : MonoBehaviour
     private SpriteRenderer bg;
     private Material mat;
     private Vector2 offset;
+    
+    [SerializeField] private float scrollTime = 10f;
 
     void Start()
     {
@@ -18,8 +20,8 @@ public class ScrollUV : MonoBehaviour
         mat = bg.material;
         offset = mat.mainTextureOffset;
 
-        offset.x = transform.position.x / transform.localScale.x / 2f;
-        offset.y = transform.position.y / transform.localScale.y / 2f;
+        offset.x = transform.position.x / transform.localScale.x / scrollTime;
+        offset.y = transform.position.y / transform.localScale.y / scrollTime;
 
         mat.mainTextureOffset = offset;
     }

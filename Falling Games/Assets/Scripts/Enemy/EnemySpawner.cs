@@ -9,13 +9,15 @@ public class EnemySpawner : MonoBehaviour
     private int currWaveNum;
 
     private bool canSpawn = true;
-
     private float nextSpawnTime;
 
-    private void Update()
+    [SerializeField] private float spawnRadius = 6f;
+
+    void Update()
     {
         currWave = waves[currWaveNum];
         SpawnWave();
+
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         if(totalEnemies.Length == 0 && !canSpawn && currWaveNum+1 != waves.Length)
         {
@@ -24,13 +26,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-   [SerializeField] private float spawnRadius = 6f;
-
     void SpawnWave()
     {
         if(canSpawn && nextSpawnTime < Time.time)
         {
-            GameObject enemy = currWave.enemyPrefab[Random.Range(0, currWave.enemyPrefab.Length)];
+            GameObject enemy = currWave.typeofEnemies[Random.Range(0, currWave.typeofEnemies.Length)];
 
             Vector2 spawnPos = GameObject.FindGameObjectWithTag("Player").transform.position;
             spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
@@ -42,7 +42,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 canSpawn = false;
             }
-
         }
     }
 }
@@ -52,6 +51,6 @@ public class Wave
 {
     public string waveName;
     public int noOfEnemies;
-    public GameObject[] enemyPrefab;
+    public GameObject[] typeofEnemies;
     public float spawnInterval;
 }

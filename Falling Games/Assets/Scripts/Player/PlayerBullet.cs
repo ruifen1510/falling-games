@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-
-
+    private Rigidbody2D rgb;
+    
     [SerializeField] private float bulletForce = 1000f;
 
+    void Start()
+    {
+        rgb = GetComponent<Rigidbody2D>();
+    }
 
     private void FixedUpdate()
     {
-        rb.AddForce(transform.up * bulletForce * Time.deltaTime, ForceMode2D.Impulse);
+        rgb.AddForce(transform.up * bulletForce * Time.deltaTime, ForceMode2D.Impulse);
 
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Asteroid")
+        if(col.gameObject.tag == "Enemy")
         {
             gameObject.SetActive(false);
         }

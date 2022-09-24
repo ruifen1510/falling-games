@@ -4,36 +4,26 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rgb;
+    [SerializeField] private float bulletForce = 0.5f;
+    [SerializeField] private int damageAmt = 10;
 
-    void Update()
+    private void LateUpdate()
     {
-        //Destroy(gameObject, 1.5f);
+        rgb.AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
     }
 
-    [SerializeField] private float bulletForce = 1000f;
-
-    private void FixedUpdate()
-    {
-        rb.AddForce(transform.up * bulletForce * Time.deltaTime, ForceMode2D.Impulse);
-    }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Player" || col.gameObject.tag == "Asteroid")
+        if(col.gameObject.tag == "Player" || col.gameObject.tag == "Bubble")
         {
             gameObject.SetActive(false);
         }
 
-        if(col.gameObject.tag == "Player")
+        if(col.gameObject.tag == "Player" && PlayerController.isShieldActive == false)
         {
-            HealthBar.health -= 10f;
+            HealthBar.health -= damageAmt;
         }
-
-        if(col.gameObject.tag == "Bubble")
-        {
-            ShieldBar.shield -= 10f;
-        }
-
     }
 
     private void OnBecameInvisible()
