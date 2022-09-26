@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private float nextSpawnTime;
 
     [SerializeField] private float spawnRadius = 6f;
+    public static bool isBossDead = false;
 
     void Update()
     {
@@ -23,6 +24,11 @@ public class EnemySpawner : MonoBehaviour
         {
             currWaveNum++;
             canSpawn = true;
+        }
+
+        if (totalEnemies.Length == 0 && !canSpawn && currWaveNum+1 == waves.Length)
+        {
+            isBossDead = true;
         }
     }
 

@@ -36,4 +36,12 @@ public class HealthBar : MonoBehaviour
             SceneManager.LoadScene(3);
         }
     }
+
+    void LowHealthAlert()
+    {
+        if(health / maxHealth <= 0.1f)
+        {
+
+        }
+    }
 }

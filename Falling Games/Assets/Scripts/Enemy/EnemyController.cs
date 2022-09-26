@@ -39,6 +39,19 @@ public class EnemyController : MonoBehaviour
         nextFire = Time.time;
     }
 
+    private IEnumerator DelayShoot()
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        yield return new WaitForSeconds(1f);
+
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+
+        //shooting
+        CheckIfTimeToFire();
+        CheckHitCount();
+    }
+
     void Update()
     {
         //rotation
@@ -54,9 +67,11 @@ public class EnemyController : MonoBehaviour
         direction.Normalize();
         movement = direction;
 
-        //shooting
+        StartCoroutine(DelayShoot());
+
+        /*//shooting
         CheckIfTimeToFire();
-        CheckHitCount();
+        CheckHitCount();*/
     }
 
     //idle movement

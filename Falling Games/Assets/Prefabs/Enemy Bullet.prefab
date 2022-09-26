@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rgb: {fileID: 1007289156960828059}
-  bulletForce: 0.5
+  bulletForce: 0.3
   damageAmt: 10

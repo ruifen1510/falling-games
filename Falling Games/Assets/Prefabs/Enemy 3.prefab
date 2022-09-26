@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 874043595814451425}
   - component: {fileID: 874043595814451423}
   - component: {fileID: 8356986789079488806}
-  - component: {fileID: -6360270930088913960}
   m_Layer: 0
   m_Name: Enemy 3
   m_TagString: Enemy
@@ -157,7 +156,7 @@ MonoBehaviour:
   followSpeed: 3
   stopDist: 4
   shootingPoint: {fileID: 874043595780639662}
-  fireTime: 2
+  fireTime: 3
   explodePrefab: {fileID: 5918514916707619858, guid: 7bf495a65e8f57a409ad81f28e93b222, type: 3}
 --- !u!61 &8356986789079488806
 BoxCollider2D:
@@ -185,15 +184,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.011879, y: 5.553357}
   m_EdgeRadius: 0
---- !u!114 &-6360270930088913960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874043595814451422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8325ae8e2d8c24e9d5baf04db3d6e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

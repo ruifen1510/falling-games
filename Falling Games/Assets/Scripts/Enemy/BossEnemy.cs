@@ -5,28 +5,47 @@ using UnityEngine.SceneManagement;
 
 public class BossEnemy : MonoBehaviour
 {
-    private int hitCount;
+    //private int hitCount;
+    [SerializeField] GameObject boss;
 
     void Start()
     {
-        hitCount = 0;
+        //hitCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hitCount == 7)
+        //if (hitCount == 7) //based on boss enemy's no of lives
+        //{
+            //StartCoroutine(DelayEnding());
+        //}
+        //Debug.Log(hitCount);*/
+
+        if(EnemySpawner.isBossDead == true)
         {
-            SceneManager.LoadScene(2);
+            StartCoroutine(DelayEnding());
         }
-        //Debug.Log(hitCount);
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    /*private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Bullet")
         {
             ++hitCount;
         }
+    }*/
+
+    private IEnumerator DelayEnding()
+    {//Print the time of when the function is first called.
+        //Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(3f);
+
+        //After we have waited 2 seconds print the time again.
+        //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+
+        SceneManager.LoadScene(2);
     }
 }

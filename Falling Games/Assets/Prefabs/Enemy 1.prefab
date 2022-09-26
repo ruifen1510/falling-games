@@ -126,7 +126,7 @@ MonoBehaviour:
   followSpeed: 1
   stopDist: 5
   shootingPoint: {fileID: 1552003447088921709}
-  fireTime: 3
+  fireTime: 4
   explodePrefab: {fileID: 5918514916707619858, guid: 7bf495a65e8f57a409ad81f28e93b222, type: 3}
 --- !u!61 &621423263041156504
 BoxCollider2D:
