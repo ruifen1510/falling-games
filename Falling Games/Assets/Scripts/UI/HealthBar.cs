@@ -10,17 +10,22 @@ public class HealthBar : MonoBehaviour
     private float maxHealth;
     public static float health;
 
+    public GameObject warning;
+
     void Start()
     {
         maxHealth = 100f;
         healthBar = GetComponent<Image>();
         health = maxHealth;
+
+        warning.SetActive(false);
     }
 
     void Update()
     {
         ReduceHealthBar();
         PlayerDies();
+        LowHealthAlert();
     }
 
     void ReduceHealthBar()
@@ -39,9 +44,9 @@ public class HealthBar : MonoBehaviour
 
     void LowHealthAlert()
     {
-        if(health / maxHealth <= 0.1f)
+        if(healthBar.fillAmount <= 0.3f)
         {
-
+            warning.SetActive(true);
         }
     }
 }

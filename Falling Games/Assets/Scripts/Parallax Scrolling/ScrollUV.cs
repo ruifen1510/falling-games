@@ -8,7 +8,7 @@ public class ScrollUV : MonoBehaviour
     private Material mat;
     private Vector2 offset;
     
-    [SerializeField] private float scrollTime = 10f;
+    [SerializeField] private float scrollTime = 5f;
 
     void Start()
     {
