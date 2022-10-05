@@ -25,6 +25,7 @@ public class BossEnemy : MonoBehaviour
         if(EnemySpawner.isBossDead == true)
         {
             StartCoroutine(DelayEnding());
+            EnemySpawner.isBossDead = false;
         }
     }
 

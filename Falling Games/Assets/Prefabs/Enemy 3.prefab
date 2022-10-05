@@ -149,14 +149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50b653c5f865d543a9a007097bb4c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noOfLives: 8
+  noOfLives: 15
   moveTime: 2
   moveSpeed: 1
   moveRadius: 3
-  followSpeed: 3
+  followSpeed: 5
   stopDist: 4
   shootingPoint: {fileID: 874043595780639662}
-  fireTime: 3
+  fireTime: 0.6
   explodePrefab: {fileID: 5918514916707619858, guid: 7bf495a65e8f57a409ad81f28e93b222, type: 3}
 --- !u!61 &8356986789079488806
 BoxCollider2D:

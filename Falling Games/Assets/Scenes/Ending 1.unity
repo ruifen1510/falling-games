@@ -543,6 +543,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6800350498075204284, guid: c23d379bd9b90974993049990ef1dff2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6800350498075204284, guid: c23d379bd9b90974993049990ef1dff2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6800350498075204284, guid: c23d379bd9b90974993049990ef1dff2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -200
       objectReference: {fileID: 0}
@@ -828,11 +836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6514274390985869568, guid: 724730040f0b561488bd635282de0ebb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6514274390985869568, guid: 724730040f0b561488bd635282de0ebb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6514274390985869568, guid: 724730040f0b561488bd635282de0ebb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -890,6 +898,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1855845204}
+    - target: {fileID: 6514274390985869569, guid: 724730040f0b561488bd635282de0ebb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartOver
+      objectReference: {fileID: 0}
     - target: {fileID: 6514274390985869571, guid: 724730040f0b561488bd635282de0ebb, type: 3}
       propertyPath: m_Name
       value: StartOverButton
