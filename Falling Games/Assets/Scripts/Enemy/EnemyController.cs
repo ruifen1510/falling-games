@@ -41,11 +41,11 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator DelayShoot()
     {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        //Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         yield return new WaitForSeconds(1f);
 
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
 
         //shooting
         CheckIfTimeToFire();
@@ -124,6 +124,7 @@ public class EnemyController : MonoBehaviour
         if(col.gameObject.tag == "Bullet")
         {
             hitCount += 1;
+            CameraShake.instance.ShakeCamera();
         }
     }
 

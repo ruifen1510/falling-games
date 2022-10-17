@@ -21,7 +21,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Enemy")
+        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Enemy2")
         {
             gameObject.SetActive(false);
         }

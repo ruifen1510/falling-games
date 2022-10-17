@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 874043595814451425}
   - component: {fileID: 874043595814451423}
   - component: {fileID: 8356986789079488806}
+  - component: {fileID: 820260851701680775}
   m_Layer: 0
   m_Name: Enemy 2
   m_TagString: Enemy
@@ -156,7 +157,7 @@ MonoBehaviour:
   followSpeed: 3
   stopDist: 5
   shootingPoint: {fileID: 874043595780639662}
-  fireTime: 1
+  fireTime: 3
   explodePrefab: {fileID: 5918514916707619858, guid: 7bf495a65e8f57a409ad81f28e93b222, type: 3}
 --- !u!61 &8356986789079488806
 BoxCollider2D:
@@ -183,4 +184,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 4.417204, y: 5.7591248}
+  m_EdgeRadius: 0
+--- !u!61 &820260851701680775
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874043595814451422}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 8}
+    newSize: {x: 8, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
