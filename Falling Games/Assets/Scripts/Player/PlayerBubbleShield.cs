@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class PlayerBubbleShield : MonoBehaviour
 {
-    private int hitCount;
+    private int bubbleHitCount;
+    [SerializeField] private int maxHitCount = 3;
 
     void Start()
     {
-        hitCount = 0;
+        bubbleHitCount = 0;
     }
 
     void Update()
     {
-        if (hitCount == 2)
+        if (bubbleHitCount == maxHitCount)
         {
             gameObject.SetActive(false);
             PlayerController.isShieldActive = false;
-            
-            hitCount = 0;
+
+            bubbleHitCount = 0;
         }
     }
 
@@ -26,7 +27,8 @@ public class PlayerBubbleShield : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy Bullet")
         {
-            hitCount += 1;
+            bubbleHitCount++;
+            Debug.Log(bubbleHitCount);
         }
     }
 }

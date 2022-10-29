@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
-    public float speed;
+    [SerializeField]
+    private float speed = 4f;
+
     private Rigidbody2D rgb;
+    //[SerializeField] private float force = 0.1f;
 
     [SerializeField] private int damageAmt = 10;
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +20,16 @@ public class BulletMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         rgb.velocity = transform.up * speed;
+
     }
+
+    /*private void LateUpdate()
+    {
+        rgb.AddForce(transform.up * force, ForceMode2D.Impulse);
+    }*/
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -31,11 +41,12 @@ public class BulletMove : MonoBehaviour
         if (col.gameObject.tag == "Player" && PlayerController.isShieldActive == false)
         {
             HealthBar.health -= damageAmt;
+            gameObject.SetActive(false);
         }
     }
 
     private void OnBecameInvisible()
     {
-        gameObject.SetActive(false);
+        rgb.gameObject.SetActive(false);
     }
 }

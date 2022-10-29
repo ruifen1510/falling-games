@@ -6,18 +6,16 @@ using Cinemachine;
 public class CameraShake : MonoBehaviour
 {
     public static CameraShake instance { get; private set; }
-
     private CinemachineVirtualCamera cinemachineVirtualCamera;
-    public float intensity = 3f, time = 0.1f;
+    
+    [SerializeField] private float intensity = 3f, time = 0.1f;
 
-    // Start is called before the first frame update
     void Awake()
     {
         instance = this;
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
-    // Update is called once per frame
     public void ShakeCamera()
     {
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
@@ -26,9 +24,9 @@ public class CameraShake : MonoBehaviour
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
     }
 
-    private void Update()
+    void Update()
     {
-        if(time > 0)
+        if(time > 0f)
         {
             time -= Time.deltaTime;
         }

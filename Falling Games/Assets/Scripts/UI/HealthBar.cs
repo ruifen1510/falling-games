@@ -24,7 +24,6 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         ReduceHealthBar();
-        PlayerDies();
         LowHealthAlert();
     }
 
@@ -32,14 +31,6 @@ public class HealthBar : MonoBehaviour
     {
             healthBar.fillAmount = health / maxHealth;
             //Debug.Log(health);
-    }
-
-    void PlayerDies()
-    {
-        if(health <= 0)
-        {
-            SceneManager.LoadScene(3);
-        }
     }
 
     void LowHealthAlert()

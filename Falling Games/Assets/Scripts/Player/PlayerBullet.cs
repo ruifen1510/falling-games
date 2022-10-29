@@ -6,7 +6,7 @@ public class PlayerBullet : MonoBehaviour
 {
     private Rigidbody2D rgb;
     
-    [SerializeField] private float bulletForce = 1000f;
+    [SerializeField] private float force = 1000f;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rgb.AddForce(transform.up * bulletForce * Time.deltaTime, ForceMode2D.Impulse);
+        rgb.AddForce(transform.up * force * Time.deltaTime, ForceMode2D.Impulse);
 
     }
 
