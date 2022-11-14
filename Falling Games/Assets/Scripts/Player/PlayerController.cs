@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip weapon1Sound;
+    public AudioClip weapon2Sound;
+
     private SpriteRenderer sprite;
     private Rigidbody2D rgb;
     private Camera cam;
@@ -45,7 +47,9 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     public Texture2D cursorArrow;
-    //private Vector2 hotSpot;
+    private Vector2 hotSpot;
+
+    public ParticleSystem ps;
 
     void Start()
     {
@@ -62,6 +66,8 @@ public class PlayerController : MonoBehaviour
         Vector2 hotSpot = new Vector2(cursorArrow.width / 2f, cursorArrow.height / 2f);
 
         Cursor.SetCursor(cursorArrow, hotSpot, CursorMode.Auto);
+
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
@@ -76,14 +82,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Vertical"))
         {
             animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Vertical")));
+            ps.Play();
         }
         else if (Input.GetButton("Horizontal"))
         {
             animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal")));
+            ps.Play();
         }
         else
         {
             animator.SetFloat("Speed", 0f);
+            ps.Stop();
         }
 
         DetectLastKeyPressed();
@@ -92,12 +101,12 @@ public class PlayerController : MonoBehaviour
         //bubble shield
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!isShieldActive && ShieldBar.shieldBar.fillAmount == 1f)
+            if (!isShieldActive && BubbleShield.shieldBar.fillAmount == 1f)
             {
                 bubbleShield.SetActive(true);
                 isShieldActive = true;
                 
-                ShieldBar.Reset();
+                BubbleShield.Reset();
             }
         }
     }
@@ -149,6 +158,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //shooting
     void SwitchWeapons()
     {
 
@@ -163,6 +173,9 @@ public class PlayerController : MonoBehaviour
                 bullet.transform.position = shootingPoint.position;
                 bullet.transform.rotation = shootingPoint.rotation;
                 bullet.SetActive(true);
+                
+                GetComponent<AudioSource>().clip = weapon1Sound;
+                GetComponent<AudioSource>().Play();
             }
         }
         else if (currBulletIndex > 1)
@@ -176,6 +189,9 @@ public class PlayerController : MonoBehaviour
                 bullet2.transform.position = shootingPoint.position;
                 bullet2.transform.rotation = shootingPoint.rotation;
                 bullet2.SetActive(true);
+
+                GetComponent<AudioSource>().clip = weapon2Sound;
+                GetComponent<AudioSource>().Play();
             }
         }
     }

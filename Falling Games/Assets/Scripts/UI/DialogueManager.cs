@@ -22,15 +22,15 @@ public class DialogueManager : MonoBehaviour
     {
         if(textDisplay.text == sentences[index])
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 NextSentence();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("PlayerSelection");
         }
     }
 
@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("Loading");
         }
     }
 }

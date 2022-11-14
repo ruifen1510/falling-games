@@ -12,12 +12,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Narrative.unity
     guid: 98dbe6c9052ce1942958592c44c44797
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/Scenes/PlayerSelection.unity
+    guid: bcf7a2d55ea697241b3b1ba3eb20b2df
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 92c8b0842de8d4244ba9c94918b91fa1
+  - enabled: 1
+    path: Assets/Scenes/MainGame1.unity
+    guid: fe740104bb3e75042bef0c3e6f0eba21
+  - enabled: 0
+    path: Assets/Scenes/MainGame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Ending 1.unity
+    path: Assets/Scenes/Victory.unity
     guid: 7b47e9e6cc27c31499da0030bde793ff
   - enabled: 1
-    path: Assets/Scenes/Ending 2.unity
+    path: Assets/Scenes/GameOver.unity
     guid: 55643c3d132c90a44ac5df8c6d01a7b7
   m_configObjects: {}

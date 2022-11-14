@@ -5,27 +5,37 @@ using UnityEngine.UI;
 
 public class ShieldBar : MonoBehaviour
 {
-    public static Image shieldBar;
-    public static float shield;
-    
+    public static Image staminaBar;
+    private float maxStamina;
+    public static float stamina;
     [SerializeField] private float fillSpeed;
 
     void Start()
     {
-        shieldBar = GetComponent<Image>();
-        shield = 0f;
-        shieldBar.fillAmount = shield;
+        maxStamina = 100f;
+        staminaBar = GetComponent<Image>();
+        stamina = maxStamina;
+
+        InvokeRepeating("Recharge", 0.0f, 1f);
     }
 
-    void Update()
+    private void Update()
     {
-        shieldBar.fillAmount = shieldBar.fillAmount + shield + fillSpeed * Time.deltaTime;
-
+        ReduceShieldBar();
     }
 
-    public static void Reset()
+    void ReduceShieldBar()
     {
-        if (shieldBar.fillAmount == 1f)
-        shieldBar.fillAmount = 0f;
+        staminaBar.fillAmount = stamina / maxStamina;
+        //Debug.Log(stamina);
+    }
+
+
+    void Recharge()
+    {
+        if(stamina < maxStamina)
+        {
+            stamina += 1f;
+        }
     }
 }

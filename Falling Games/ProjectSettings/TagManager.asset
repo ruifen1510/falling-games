@@ -18,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Bullets
-  - 
+  - Backgrounds
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Foregroud
     uniqueID: 1934705715
+    locked: 0
+  - name: UI
+    uniqueID: 324149857
     locked: 0

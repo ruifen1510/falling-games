@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Narrative");
     }
 
     public void StartOver()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("PlayerSelection");
         Time.timeScale = 1f;
     }
 
