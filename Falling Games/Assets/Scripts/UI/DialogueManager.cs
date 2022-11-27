@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
+    public AudioClip typeSound;
+
     [SerializeField] Text textDisplay;
     [SerializeField] string[] sentences;
     [SerializeField] float typingSpeed;
@@ -15,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(Type());
+
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -32,6 +36,8 @@ public class DialogueManager : MonoBehaviour
         {
             SceneManager.LoadScene("PlayerSelection");
         }
+
+        //TypeSound();
     }
 
     IEnumerator Type()
@@ -39,8 +45,14 @@ public class DialogueManager : MonoBehaviour
         foreach(char letter in sentences[index].ToCharArray())
         {
             textDisplay.text += letter;
+            
+            GetComponent<AudioSource>().clip = typeSound;
+            GetComponent<AudioSource>().Play();
+            
             yield return new WaitForSeconds(typingSpeed);
         }
+
+        GetComponent<AudioSource>().Stop();
     }
 
     public void NextSentence()
@@ -53,7 +65,20 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Loading");
+            SceneManager.LoadScene("PlayerSelection");
         }
     }
+
+    /*public void TypeSound()
+    {
+        if(textDisplay.text != sentences[index])
+        {
+            GetComponent<AudioSource>().clip = typeSound;
+            GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+    }*/
 }

@@ -23,6 +23,7 @@ public class BubbleShield : MonoBehaviour
         shieldBar.fillAmount = shield;
 
         bubbleShieldColor.a = 0.5f;
+
     }
 
     void Update()

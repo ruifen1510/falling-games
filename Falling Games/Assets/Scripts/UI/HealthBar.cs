@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private Image healthBar;
+    public static Image healthBar;
     private float maxHealth;
     public static float health;
 
     public GameObject warning;
+
+    //public AudioClip lowHealthSound;
+
+    public float lowHealthThreshold = 0.3f;
 
     void Start()
     {
@@ -18,12 +22,15 @@ public class HealthBar : MonoBehaviour
         health = maxHealth;
 
         warning.SetActive(false);
+
+        //GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
     {
         ReduceHealthBar();
         LowHealthAlert();
+        //LowHealthSound();
     }
 
     void ReduceHealthBar()
@@ -34,9 +41,21 @@ public class HealthBar : MonoBehaviour
 
     void LowHealthAlert()
     {
-        if(healthBar.fillAmount <= 0.3f)
+        if(healthBar.fillAmount <= lowHealthThreshold)
         {
             warning.SetActive(true);
         }
     }
+
+    /*void LowHealthSound()
+    {
+        if(warning.activeSelf == true)
+        {
+            //GetComponent<AudioSource>().clip = lowHealthSound;
+            //GetComponent<AudioSource>().Play();
+
+            alert.clip = lowHealthSound;
+            alert.Play();
+        }
+    }*/
 }

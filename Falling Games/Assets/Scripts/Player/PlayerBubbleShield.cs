@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerBubbleShield : MonoBehaviour
 {
+    public AudioClip bulletBlockSound;
+
     private int bubbleHitCount;
     [SerializeField] private int maxHitCount = 3;
 
     void Start()
     {
         bubbleHitCount = 0;
+
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
@@ -28,7 +32,10 @@ public class PlayerBubbleShield : MonoBehaviour
         if(collision.gameObject.tag == "Enemy Bullet")
         {
             bubbleHitCount++;
-            Debug.Log(bubbleHitCount);
+            //Debug.Log(bubbleHitCount);
+
+            GetComponent<AudioSource>().clip = bulletBlockSound;
+            GetComponent<AudioSource>().Play();
         }
     }
 }

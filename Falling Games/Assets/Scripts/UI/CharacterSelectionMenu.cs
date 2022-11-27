@@ -9,12 +9,16 @@ public class CharacterSelectionMenu : MonoBehaviour
     public static CharacterSelectionMenu characterSelection;
 
     [SerializeField] private GameObject[] playerCharacters;
-    public int selectedCharacter = 0;
+    public static int selectedCharacter = 0;
 
     [SerializeField] private Text playerText;
 
+    public AudioClip buttonClickSound;
+
     void Start()
     {
+        GetComponent<AudioSource>().playOnAwake = false;
+
         playerCharacters[selectedCharacter].SetActive(true);
 
         for (int player = 1; player < playerCharacters.Length; player++)
@@ -40,6 +44,22 @@ public class CharacterSelectionMenu : MonoBehaviour
         SelectPlayer();
     }
 
+    public void RightClick()
+    {
+        GetComponent<AudioSource>().clip = buttonClickSound;
+        GetComponent<AudioSource>().Play();
+
+        NextCharacter();
+    }
+
+    public void LeftClick()
+    {
+        GetComponent<AudioSource>().clip = buttonClickSound;
+        GetComponent<AudioSource>().Play();
+
+        PreviousCharacter();
+    }
+
     void NextCharacter()
     {
         playerCharacters[selectedCharacter].SetActive(false);
@@ -51,6 +71,8 @@ public class CharacterSelectionMenu : MonoBehaviour
         }
 
         playerCharacters[selectedCharacter].SetActive(true);
+
+        Debug.Log(selectedCharacter);
     }
 
     void PreviousCharacter()
@@ -64,25 +86,26 @@ public class CharacterSelectionMenu : MonoBehaviour
         }
 
         playerCharacters[selectedCharacter].SetActive(true);
+
+        Debug.Log(selectedCharacter);
     }
 
     void DisplayPlayerName()
     {
         switch(selectedCharacter)
         {
-            case 0:
-                playerText.text = "Amber (Angel)";
+            case 0: //angel
+                playerText.text = "Amber";
                 break;
-            case 1:
-                playerText.text = "Terra (Human)";
+            case 1: //human
+                playerText.text = "Terra";
                 break;
-            case 2:
-                playerText.text = "Mako (Alien)";
+            case 2: //alien
+                playerText.text = "Mako";
                 break;
-            case 3:
-                playerText.text = "Lily (Devil)";
+            case 3: //devil
+                playerText.text = "Lilith";
                 break;
-
         }
     }
 
@@ -90,7 +113,10 @@ public class CharacterSelectionMenu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("Loading");
+            if(selectedCharacter <= 1)
+            {
+                SceneManager.LoadScene("Loading");
+            }
         }
     }
 }

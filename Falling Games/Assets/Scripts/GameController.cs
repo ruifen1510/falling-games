@@ -9,6 +9,13 @@ public class GameController : MonoBehaviour
     public GameObject playerExplosion;
     public GameObject player;
 
+    public AudioClip bubbleFullSound;
+    private bool alreadyPlayedBubbleSound;
+
+    public AudioClip lowHealthSound;
+    private bool alreadyPlayedLowHealthSound;
+
+
     //public GameObject[] bomb;
     //public float timeToSpawnBomb = 3f;
     //public float spawnRadius = 7f;
@@ -17,11 +24,19 @@ public class GameController : MonoBehaviour
     {
         //StartCoroutine(BombSpawner());
         playerExplosion.SetActive(false);
+
+        GetComponent<AudioSource>().playOnAwake = false;
+
+        alreadyPlayedBubbleSound = false;
+        alreadyPlayedLowHealthSound = false;
+
     }
 
     void Update()
     {
         StartCoroutine(PlayerDead());
+
+        PlaySound();
     }
 
     IEnumerator PlayerDead()
@@ -39,6 +54,37 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
+
+    private void PlaySound()
+    {
+        if(BubbleShield.shieldBar.fillAmount == 1f)
+        {
+            if(alreadyPlayedBubbleSound == false)
+            {
+                //GetComponent<AudioSource>().clip = bubbleFullSound;
+                //GetComponent<AudioSource>().Play();
+
+                GetComponent<AudioSource>().PlayOneShot(bubbleFullSound);
+
+                alreadyPlayedBubbleSound = true;
+            }
+        }
+        else
+        {
+            alreadyPlayedBubbleSound = false;
+        }
+
+        if(HealthBar.healthBar.fillAmount <= 0.3f)
+        {
+            if(alreadyPlayedLowHealthSound == false)
+            {
+                GetComponent<AudioSource>().PlayOneShot(lowHealthSound);
+
+                alreadyPlayedLowHealthSound = true;
+            }
+        }
+    }
+
 
     /*IEnumerator BombSpawner()
     {

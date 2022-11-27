@@ -19,7 +19,8 @@ public class ChangeWeapon : MonoBehaviour
 
     void Update()
     {
-        PlayerController.DetectLastKeyPressed();
+        PlayerController playerController = new PlayerController();
+        playerController.DetectLastKeyPressed();
         SwitchWeaponSelection();
     }
 

@@ -6,6 +6,13 @@ public class Pause : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
 
+    public AudioClip buttonClickSound;
+
+    void Start()
+    {
+        GetComponent<AudioSource>().playOnAwake = false;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -19,5 +26,8 @@ public class Pause : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+
+        GetComponent<AudioSource>().clip = buttonClickSound;
+        GetComponent<AudioSource>().Play();
     }
 }

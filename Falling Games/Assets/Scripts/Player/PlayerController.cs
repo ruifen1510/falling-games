@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController playerController;
+
     public AudioClip weapon1Sound;
     public AudioClip weapon2Sound;
+
+    public AudioClip weaponSwitchSound;
+
+    public AudioClip shieldActivationSound;
 
     private SpriteRenderer sprite;
     private Rigidbody2D rgb;
@@ -44,7 +50,9 @@ public class PlayerController : MonoBehaviour
     public int weapon1Damage = 1;
     public int weapon2Damage = 2;
 
-    public Animator animator;
+    //public Animator animator;
+    public RuntimeAnimatorController[] animControllers;
+    private Animator animator;
 
     public Texture2D cursorArrow;
     private Vector2 hotSpot;
@@ -53,6 +61,21 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        if(CharacterSelectionMenu.selectedCharacter == 0)
+        {
+            animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = animControllers[0];
+
+            //Debug.Log(CharacterSelectionMenu.selectedCharacter);
+        }
+        else if(CharacterSelectionMenu.selectedCharacter == 1)
+        {
+            animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = animControllers[1];
+
+            //Debug.Log(CharacterSelectionMenu.selectedCharacter);
+        }
+
         cam = Camera.main;
         rgb = GetComponent<Rigidbody2D>();
 
@@ -63,9 +86,9 @@ public class PlayerController : MonoBehaviour
 
         currBulletIndex = 1;
 
-        Vector2 hotSpot = new Vector2(cursorArrow.width / 2f, cursorArrow.height / 2f);
+        /*Vector2 hotSpot = new Vector2(cursorArrow.width / 2f, cursorArrow.height / 2f);
 
-        Cursor.SetCursor(cursorArrow, hotSpot, CursorMode.Auto);
+        Cursor.SetCursor(cursorArrow, hotSpot, CursorMode.Auto);*/
 
         GetComponent<AudioSource>().playOnAwake = false;
     }
@@ -105,7 +128,10 @@ public class PlayerController : MonoBehaviour
             {
                 bubbleShield.SetActive(true);
                 isShieldActive = true;
-                
+
+                GetComponent<AudioSource>().clip = shieldActivationSound;
+                GetComponent<AudioSource>().Play();
+
                 BubbleShield.Reset();
             }
         }
@@ -143,18 +169,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public static void DetectLastKeyPressed()
+    public void DetectLastKeyPressed()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Debug.Log("Key 1 pressed");
 
             currBulletIndex = 1;
+
+            GetComponent<AudioSource>().clip = weaponSwitchSound;
+            GetComponent<AudioSource>().Play();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Debug.Log("Key 2 pressed");
             currBulletIndex++;
+
+            GetComponent<AudioSource>().clip = weaponSwitchSound;
+            GetComponent<AudioSource>().Play();
         }
     }
 
