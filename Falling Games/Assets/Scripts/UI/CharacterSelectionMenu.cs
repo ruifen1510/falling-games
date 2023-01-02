@@ -1,19 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CharacterSelectionMenu : MonoBehaviour
 {
     public static CharacterSelectionMenu characterSelection;
-
-    [SerializeField] private GameObject[] playerCharacters;
     public static int selectedCharacter = 0;
 
+    [SerializeField] private GameObject[] playerCharacters;
     [SerializeField] private Text playerText;
-
-    public AudioClip buttonClickSound;
+    [SerializeField] private AudioClip buttonClickSound;
 
     void Start()
     {
@@ -40,8 +35,6 @@ public class CharacterSelectionMenu : MonoBehaviour
         }
 
         DisplayPlayerName();
-
-        SelectPlayer();
     }
 
     public void RightClick()
@@ -71,8 +64,6 @@ public class CharacterSelectionMenu : MonoBehaviour
         }
 
         playerCharacters[selectedCharacter].SetActive(true);
-
-        Debug.Log(selectedCharacter);
     }
 
     void PreviousCharacter()
@@ -86,8 +77,6 @@ public class CharacterSelectionMenu : MonoBehaviour
         }
 
         playerCharacters[selectedCharacter].SetActive(true);
-
-        Debug.Log(selectedCharacter);
     }
 
     void DisplayPlayerName()
@@ -106,17 +95,6 @@ public class CharacterSelectionMenu : MonoBehaviour
             case 3: //devil
                 playerText.text = "Lilith";
                 break;
-        }
-    }
-
-    void SelectPlayer()
-    {
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            if(selectedCharacter <= 1)
-            {
-                SceneManager.LoadScene("Loading");
-            }
         }
     }
 }

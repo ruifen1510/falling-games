@@ -1,17 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ThreatDetected : MonoBehaviour
 {
-
-    public int flickerAmount = 3;
-    public float flickerTime = 0.5f;
+    [SerializeField] private int flickerAmount = 3;
+    [SerializeField] private float flickerTime = 0.5f;
 
     private Text text;
 
-    // Start is called before the first frame update
     void Start()
     {
         text = GetComponent<Text>();

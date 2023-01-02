@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoubleSpiral : MonoBehaviour
@@ -7,9 +6,8 @@ public class DoubleSpiral : MonoBehaviour
     private float angle = 0f;
     private Vector2 bulletMoveDir;
 
-    public float delayShootDuration = 2f;
+    [SerializeField] private float delayShootDuration = 2f;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(DelayShoot());

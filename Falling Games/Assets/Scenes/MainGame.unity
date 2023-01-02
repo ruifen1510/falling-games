@@ -285,6 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dae940cd72f6a74e8df16fc3005109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonClickSound: {fileID: 0}
 --- !u!114 &113344664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1971020874}
+  buttonClickSound: {fileID: 0}
 --- !u!1001 &255477010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -741,10 +743,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerExplosion: {fileID: 2004513605}
   player: {fileID: 822680405}
-  bomb:
-  - {fileID: 238545705840729820, guid: 05b240ccdf30a2d48a415daa52572aa0, type: 3}
-  timeToSpawnBomb: 5
-  spawnRadius: 5
+  bubbleFullSound: {fileID: 0}
+  lowHealthSound: {fileID: 0}
 --- !u!4 &402153662
 Transform:
   m_ObjectHideFlags: 0
@@ -924,8 +924,10 @@ MonoBehaviour:
     - {fileID: 874043595814451422, guid: 1b1b20f6a91a62a489c9748c1af4b3c8, type: 3}
     - {fileID: 874043595814451422, guid: 2c1b05221fc1d9c4cbc56d0b5f145e92, type: 3}
     spawnInterval: 1
+  currWaveNum: 0
   spawnRadius: 5
   timeToSpawnEnemy: 5
+  waveText: {fileID: 0}
 --- !u!4 &488271267
 Transform:
   m_ObjectHideFlags: 0
@@ -995,8 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e897046c6435db42a39d8f36f8ba326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 822680407}
-  speed: 0.2
+  t: 0.2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1804,6 +1805,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon1Sound: {fileID: 8300000, guid: d451db49d2cf9be4e984cbd2cba4285e, type: 3}
   weapon2Sound: {fileID: 8300000, guid: d2d637a52489f994f831b363ab7a3584, type: 3}
+  weaponSwitchSound: {fileID: 0}
+  shieldActivationSound: {fileID: 0}
+  playerHitSound: {fileID: 0}
   speed: 5
   shootingPoint: {fileID: 1367033771}
   weapon1FireTime: 0.1
@@ -1813,7 +1817,7 @@ MonoBehaviour:
   flickerTime: 0.1
   weapon1Damage: 1
   weapon2Damage: 2
-  animator: {fileID: 822680411}
+  animControllers: []
   cursorArrow: {fileID: 2800000, guid: 3b95a2e32ffd3f541bf975e6cef2877f, type: 3}
   ps: {fileID: 877498197}
 --- !u!50 &822680409
@@ -7308,6 +7312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debb52c05dd8de2448588c5c2f37e264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletBlockSound: {fileID: 0}
   maxHitCount: 3
 --- !u!212 &1084116367
 SpriteRenderer:
@@ -7748,6 +7753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warning: {fileID: 1043400630}
+  lowHealthThreshold: 0.3
 --- !u!1001 &1359191469
 PrefabInstance:
   m_ObjectHideFlags: 0

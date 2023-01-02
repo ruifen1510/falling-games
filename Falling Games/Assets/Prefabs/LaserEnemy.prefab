@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldDamageAmount: 25
-  damageAmt: 5
+  damageAmt: 10
 --- !u!1 &7620300908489048705
 GameObject:
   m_ObjectHideFlags: 0

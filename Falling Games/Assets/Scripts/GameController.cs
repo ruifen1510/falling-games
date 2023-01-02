@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        BWEffect.intensity = 0f;
+
         //StartCoroutine(BombSpawner());
         playerExplosion.SetActive(false);
 
@@ -46,6 +48,8 @@ public class GameController : MonoBehaviour
             playerExplosion.SetActive(true);
 
             yield return new WaitForSeconds(0.8f);
+
+            BWEffect.intensity = 1f;
 
             Destroy(player);
 

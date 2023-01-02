@@ -4,7 +4,7 @@ using System.Collections;
 [ExecuteInEditMode]
 public class BWEffect : MonoBehaviour {
 
-	public float intensity;
+	public static float intensity;
 	private Material material;
 
 	// Creates a private material used to the effect

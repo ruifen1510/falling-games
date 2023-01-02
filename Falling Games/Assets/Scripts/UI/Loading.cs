@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -12,7 +11,6 @@ public class Loading : MonoBehaviour
 
     private int index; //sentence index
 
-
     void Start()
     {
         StartCoroutine(Type());
@@ -24,7 +22,6 @@ public class Loading : MonoBehaviour
         {
             NextSentence();
         }
-
     }
 
     IEnumerator Type()
@@ -49,5 +46,4 @@ public class Loading : MonoBehaviour
             SceneManager.LoadScene("MainGame1");
         }
     }
-
 }

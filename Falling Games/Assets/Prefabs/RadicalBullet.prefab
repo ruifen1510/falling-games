@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damageAmt: 5
+  damageAmt: 7
   shieldDamageAmount: 25
 --- !u!50 &6291002835415174836
 Rigidbody2D:

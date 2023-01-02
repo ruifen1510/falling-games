@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBubbleShield : MonoBehaviour
 {
-    public AudioClip bulletBlockSound;
-
     private int bubbleHitCount;
+
+    [SerializeField] private AudioClip bulletBlockSound;
     [SerializeField] private int maxHitCount = 3;
 
     void Start()
@@ -32,7 +30,6 @@ public class PlayerBubbleShield : MonoBehaviour
         if(collision.gameObject.tag == "Enemy Bullet")
         {
             bubbleHitCount++;
-            //Debug.Log(bubbleHitCount);
 
             GetComponent<AudioSource>().clip = bulletBlockSound;
             GetComponent<AudioSource>().Play();

@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+//STAMINA BAR (BLUE BAR)
 
 public class ShieldBar : MonoBehaviour
 {
     public static Image staminaBar;
-    private float maxStamina;
     public static float stamina;
+
+    private float maxStamina;
+
     [SerializeField] private float fillSpeed;
 
     void Start()
@@ -27,9 +29,7 @@ public class ShieldBar : MonoBehaviour
     void ReduceShieldBar()
     {
         staminaBar.fillAmount = stamina / maxStamina;
-        //Debug.Log(stamina);
     }
-
 
     void Recharge()
     {

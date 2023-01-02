@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
@@ -16,7 +14,6 @@ public class PlayerBullet : MonoBehaviour
     private void FixedUpdate()
     {
         rgb.AddForce(transform.up * force * Time.deltaTime, ForceMode2D.Impulse);
-
     }
 
     private void OnTriggerEnter2D(Collider2D col)

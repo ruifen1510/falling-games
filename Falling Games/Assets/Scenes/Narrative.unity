@@ -814,7 +814,7 @@ MonoBehaviour:
   - who are set on sabotaging the main participants and influencing the tide of war.
   - You are part of the defector faction,
   - piloting a spaceship that is modified from the main factions.
-  - So, are you ready to fight?
+  - Are you ready to begin the war?
   typingSpeed: 0.05
 --- !u!4 &1620123285
 Transform:
@@ -842,7 +842,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1017,7 +1017,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717535716}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3f5f7663574b12f4a9b8293014e02efc, type: 3}

@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rgb: {fileID: 1007289156960828059}
   force: 0.5
-  damageAmount: 3
+  damageAmount: 5
   shieldDamageAmount: 25
 --- !u!61 &7033089198610200943
 BoxCollider2D:

@@ -1,62 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController playerController;
-
-    public AudioClip weapon1Sound;
-    public AudioClip weapon2Sound;
-
-    public AudioClip weaponSwitchSound;
-
-    public AudioClip shieldActivationSound;
+    public static int currBulletIndex;
+    public static bool isShieldActive;
 
     private SpriteRenderer sprite;
     private Rigidbody2D rgb;
     private Camera cam;
-
-    //rotation
     private Vector2 mousePos;
-
-    //movement
     private float horizontalInput;
     private float verticalInput;
+    private float nextFire;
+    private Animator animator;
+
+    [Header("Audio")]
+    public AudioClip weapon1Sound;
+    public AudioClip weapon2Sound;
+    public AudioClip weaponSwitchSound;
+    public AudioClip shieldActivationSound;
+    public AudioClip playerHitSound;
 
     [Header("Movement")]
     [SerializeField] private float speed = 5f;
-
-    //shooting
-    private float nextFire;
 
     [Header("Shooting")]
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private float weapon1FireTime = 0.3f;
     [SerializeField] private float weapon2FireTime = 0.7f;
 
-    public static int currBulletIndex;
-
-    //bubble shield
-    public static bool isShieldActive;
-
+    [Header("Bubble Shield")]
     [SerializeField] private GameObject bubbleShield;
 
-    //damage
-    //private bool canTakeDamage;
-    public int flickerAmount = 3;
-    public float flickerTime = 0.3f;
-
+    [Header("Damage")]
+    [SerializeField] private int flickerAmount = 3;
+    [SerializeField] private float flickerTime = 0.3f;
     public int weapon1Damage = 1;
     public int weapon2Damage = 2;
 
-    //public Animator animator;
-    public RuntimeAnimatorController[] animControllers;
-    private Animator animator;
+    [Header("Animation Controllers")]
+    [SerializeField] private RuntimeAnimatorController[] animControllers;
 
-    public Texture2D cursorArrow;
-    private Vector2 hotSpot;
-
+    [Header("Particle System")]
     public ParticleSystem ps;
 
     void Start()
@@ -65,30 +52,30 @@ public class PlayerController : MonoBehaviour
         {
             animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = animControllers[0];
-
-            //Debug.Log(CharacterSelectionMenu.selectedCharacter);
         }
         else if(CharacterSelectionMenu.selectedCharacter == 1)
         {
             animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = animControllers[1];
-
-            //Debug.Log(CharacterSelectionMenu.selectedCharacter);
+        }
+        else if (CharacterSelectionMenu.selectedCharacter == 2)
+        {
+            animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = animControllers[2];
+        }
+        else if (CharacterSelectionMenu.selectedCharacter == 3)
+        {
+            animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = animControllers[3];
         }
 
         cam = Camera.main;
         rgb = GetComponent<Rigidbody2D>();
-
         sprite = gameObject.GetComponent<SpriteRenderer>();
 
         isShieldActive = false;
         bubbleShield.SetActive(false);
-
         currBulletIndex = 1;
-
-        /*Vector2 hotSpot = new Vector2(cursorArrow.width / 2f, cursorArrow.height / 2f);
-
-        Cursor.SetCursor(cursorArrow, hotSpot, CursorMode.Auto);*/
 
         GetComponent<AudioSource>().playOnAwake = false;
     }
@@ -152,6 +139,9 @@ public class PlayerController : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy Bullet" && isShieldActive == false)
         {
+            GetComponent<AudioSource>().clip = playerHitSound;
+            GetComponent<AudioSource>().Play();
+
             StartCoroutine(DamageFlicker());
         }
     }
@@ -173,8 +163,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Key 1 pressed");
-
             currBulletIndex = 1;
 
             GetComponent<AudioSource>().clip = weaponSwitchSound;
@@ -182,7 +170,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log("Key 2 pressed");
             currBulletIndex++;
 
             GetComponent<AudioSource>().clip = weaponSwitchSound;
@@ -193,7 +180,6 @@ public class PlayerController : MonoBehaviour
     //shooting
     void SwitchWeapons()
     {
-
         if (currBulletIndex == 1)
         {
             if (Input.GetMouseButtonDown(0) && Time.time > nextFire)

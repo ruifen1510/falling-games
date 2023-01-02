@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy1Bullet : MonoBehaviour
@@ -21,7 +19,6 @@ public class Enemy1Bullet : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        //&& shieldbar fill is more than 0f
         if(col.gameObject.tag == "Player" && PlayerController.isShieldActive == false)
         {
             if(ShieldBar.stamina > 0f)

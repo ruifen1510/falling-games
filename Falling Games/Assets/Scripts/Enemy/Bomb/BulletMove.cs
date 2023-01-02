@@ -1,20 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 4f;
-
-    private Rigidbody2D rgb;
-    //[SerializeField] private float force = 0.1f;
-
+    [SerializeField] private float speed = 4f;
     [SerializeField] private int damageAmt = 10;
-
     [SerializeField] private float shieldDamageAmount = 15f;
 
-    //[SerializeField] private Renderer bulletPrefab;
+    private Rigidbody2D rgb;
 
     void Start()
     {
@@ -25,12 +17,6 @@ public class BulletMove : MonoBehaviour
     {
         rgb.velocity = transform.up * speed;
     }
-
-    /*private void LateUpdate()
-    {
-        rgb.AddForce(transform.up * force, ForceMode2D.Impulse);
-    }*/
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player" || col.gameObject.tag == "Bubble")

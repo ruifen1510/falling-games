@@ -1,35 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public Animator animator;
+    [SerializeField] private Animator animator;
+    [SerializeField] private int noOfLives = 10;
 
     private Rigidbody2D rgb;
     private int hitCount;
-
-    [SerializeField] private int noOfLives = 10;
-
-    //idle movement (how much time, how fast, and how much distance enemy moves in its position)
-    [SerializeField] float moveTime = 2f, moveSpeed = 0.5f, moveRadius = 3f;
-
-    //follow player
+    private float nextFire;
     private GameObject player;
     private Vector2 movement;
+    private Vector3 lastPos;
 
+    [SerializeField] float moveTime = 2f, moveSpeed = 0.5f, moveRadius = 3f; //idle movement
     [SerializeField] private float followSpeed = 1f, stopDistance = 5f;
-
-    //shooting
-    private float nextFire;
-
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private float fireTime = 3f;
     [SerializeField] private GameObject explosionPrefab;
-
-    public float delayShootDuration = 1f;
-
-    private Vector3 lastPos;
+    [SerializeField] private float delayShootDuration = 1f;
 
     void Start()
     {
@@ -48,11 +37,7 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator DelayShoot()
     {
-        //Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
         yield return new WaitForSeconds(delayShootDuration);
-
-        //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
 
         //shooting
         CheckIfTimeToFire();
@@ -74,23 +59,10 @@ public class EnemyController : MonoBehaviour
         direction.Normalize();
         movement = direction;
 
-        /*//shooting
-        CheckIfTimeToFire();
-        CheckHitCount();*/
-
         StartCoroutine(DelayShoot());
 
         Vector3 dist = transform.position - lastPos;
         float currentSpeed = dist.magnitude / Time.deltaTime;
-
-        /*if (currentSpeed > 0)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }*/
 
         lastPos = transform.position;
     }
@@ -135,10 +107,6 @@ public class EnemyController : MonoBehaviour
     {
         if (Time.time > nextFire)
         {
-            /*GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
-            nextFire = Time.time + fireRate;
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(transform.up * bulletForce * Time.deltaTime, ForceMode2D.Impulse);*/
             nextFire = Time.time + fireTime;
 
             GameObject bullet = Enemy1BulletPool.instance.GetPooledObjects();
@@ -158,15 +126,11 @@ public class EnemyController : MonoBehaviour
         {
             hitCount += playerController.weapon1Damage;
             CameraShake.instance.ShakeCamera();
-
-            //GetComponent<AudioSource>().Play();
         }
         if(col.gameObject.tag == "Bullet2")
         {
             hitCount += playerController.weapon2Damage;
             CameraShake.instance.ShakeCamera();
-
-            //GetComponent<AudioSource>().Play();
         }
     }
 

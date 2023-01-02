@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,6 @@ public class ChangeWeapon : MonoBehaviour
 {
     [SerializeField] private Image weapon1Selector;
     [SerializeField] private Image weapon2Selector;
-
     [SerializeField] private Sprite selected;
     [SerializeField] private Sprite unselected;
 
@@ -37,6 +34,4 @@ public class ChangeWeapon : MonoBehaviour
             weapon2Selector.sprite = selected;
         }
     }
-
-    
 }

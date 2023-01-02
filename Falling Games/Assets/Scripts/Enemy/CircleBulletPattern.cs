@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CircleBulletPattern : MonoBehaviour
@@ -7,8 +5,8 @@ public class CircleBulletPattern : MonoBehaviour
     [SerializeField] private float radius = 25f, initialSpeed = 100f;
     [SerializeField] private int noOfBullets = 7;
     [SerializeField] private Transform shootingPoint;
-    public float speed = 4f;
-    public float stopDist = 4f;
+    [SerializeField] private float speed = 4f;
+    [SerializeField] private float stopDist = 4f;
 
     private Transform player;
     private Rigidbody2D rgb;

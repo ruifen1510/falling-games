@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -21,7 +20,6 @@ public class DialogueManager : MonoBehaviour
         GetComponent<AudioSource>().playOnAwake = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(textDisplay.text == sentences[index])
@@ -36,8 +34,6 @@ public class DialogueManager : MonoBehaviour
         {
             SceneManager.LoadScene("PlayerSelection");
         }
-
-        //TypeSound();
     }
 
     IEnumerator Type()
@@ -68,17 +64,4 @@ public class DialogueManager : MonoBehaviour
             SceneManager.LoadScene("PlayerSelection");
         }
     }
-
-    /*public void TypeSound()
-    {
-        if(textDisplay.text != sentences[index])
-        {
-            GetComponent<AudioSource>().clip = typeSound;
-            GetComponent<AudioSource>().Play();
-        }
-        else
-        {
-            GetComponent<AudioSource>().Stop();
-        }
-    }*/
 }

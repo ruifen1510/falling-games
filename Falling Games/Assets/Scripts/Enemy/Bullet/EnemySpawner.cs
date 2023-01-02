@@ -1,42 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner enemySpawner;
-
-    public Wave[] waves;
-
-    private Wave currWave;
-    public int currWaveNum;
-
-    private bool canSpawn = true;
-    private float nextSpawnTime;
-
-    [SerializeField] private float spawnRadius = 6f;
     public static bool isBossDead = false;
 
-    public float timeToSpawnEnemy = 5f;
-    public Text waveText;
+    [SerializeField] private Wave[] waves;
+    [SerializeField] private int currWaveNum;
+    [SerializeField] private float spawnRadius = 6f;
+    [SerializeField] private float timeToSpawnEnemy = 5f;
 
-    private void Start()
-    {
-        waveText.enabled = false;
-    }
+    private Wave currWave;
+    private bool canSpawn = true;
+    private float nextSpawnTime;
 
     void Update()
     {
         currWave = waves[currWaveNum];
         Invoke("SpawnWave", timeToSpawnEnemy);
-
-        //DisplayWaveNum();
-
-        waveText.enabled = true;
-        waveText.text = "Wave " + currWave.waveName;
-        waveText.CrossFadeAlpha(0f, 1f, false);
-        //waveText.enabled = false;
 
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         if(totalEnemies.Length == 0 && !canSpawn && currWaveNum+1 != waves.Length)
@@ -50,19 +32,6 @@ public class EnemySpawner : MonoBehaviour
             isBossDead = true;
         }
     }
-
-    /*void DisplayWaveNum()
-    {
-        if(waveText.enabled == true)
-        {
-            waveText.GetComponent<CanvasRenderer>().SetAlpha(1f);
-        }
-
-        if (Time.time > timeToSpawnEnemy)
-        { 
-
-        }
-    }*/
 
     void SpawnWave()
     {

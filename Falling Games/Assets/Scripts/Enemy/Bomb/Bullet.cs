@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -8,16 +6,13 @@ public class Bullet : MonoBehaviour
     public float moveSpeed = 10f;
 
     [SerializeField] private float shieldDamageAmount = 15f;
-
     [SerializeField] private int damageAmt = 1;
-
 
     void OnEnable()
     {
         Invoke("Destroy", 3f); 
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(moveDir * moveSpeed * Time.deltaTime);
@@ -37,9 +32,6 @@ public class Bullet : MonoBehaviour
     {
         CancelInvoke();
     }
-
-    //[SerializeField] private Rigidbody2D rgb;
-    //[SerializeField] private float force = 0.5f;
 
     private void OnTriggerEnter2D(Collider2D col)
     {

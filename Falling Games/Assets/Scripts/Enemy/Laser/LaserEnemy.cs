@@ -1,32 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserEnemy : MonoBehaviour
 {
     private Rigidbody2D rgb;
-
     private float fireRate;
     private float canFire = 2f;
-
-    public GameObject laserBeam;
-
-    //follow player
     private GameObject player;
-
-    [SerializeField] private float speed = 4f, stopDist = 5f;
-
-    [SerializeField] private float minSpeed = 45f;
-    [SerializeField] private float maxSpeed = 90f;
-
     private bool isFiring;
-
     private int hitCount;
-    [SerializeField] private int noOfLives = 20;
-
-    public GameObject explosionPrefab;
-
     private Animator animator;
+
+    [SerializeField] private GameObject laserBeam;
+    [SerializeField] private float speed = 4f, stopDist = 5f;
+    [SerializeField] private float minSpeed = 45f, maxSpeed = 90f;
+    [SerializeField] private int noOfLives = 20;
+    [SerializeField] private GameObject explosionPrefab;
 
     void Start()
     {
@@ -41,11 +30,8 @@ public class LaserEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(Rotate());
-
         //follows player
         if (Vector2.Distance(player.transform.position, transform.position) > stopDist)
         {
@@ -69,33 +55,12 @@ public class LaserEnemy : MonoBehaviour
         Rotation();
     }
 
-    /*IEnumerator Rotate()
-    {
-        //rotation
-        Vector3 direction = player.transform.position - transform.position;
-        direction.Normalize();
-
-        float generatorTimer = Random.Range(0f, 3f);
-
-        yield return new WaitForSeconds(generatorTimer);
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        Quaternion desiredRotation = Quaternion.Euler(0, 0, angle);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime);
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        rgb.rotation = angle;
-
-    }*/
-
     void Rotation()
     {
         if(isFiring == false)
         {
             Vector3 direction = player.transform.position - transform.position;
             direction.Normalize();
-
-            //float randomAngleoffset = Random.Range(-45f, 45f);
 
             float rotateSpeed = Random.Range(minSpeed, maxSpeed);
 
@@ -141,15 +106,11 @@ public class LaserEnemy : MonoBehaviour
         {
             hitCount += playerController.weapon1Damage;
             CameraShake.instance.ShakeCamera();
-
-            //GetComponent<AudioSource>().Play();
         }
         if (col.gameObject.tag == "Bullet2")
         {
             hitCount += playerController.weapon2Damage;
             CameraShake.instance.ShakeCamera();
-
-            //GetComponent<AudioSource>().Play();
         }
     }
 

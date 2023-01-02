@@ -6661,7 +6661,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6854,7 +6854,7 @@ MonoBehaviour:
   _scanLineJitter: 0
   _verticalJump: 0
   _horizontalShake: 0
-  _colorDrift: 0.05
+  _colorDrift: 0.03
   _shader: {fileID: 4800000, guid: da33272284ea24f208f36998880990be, type: 3}
 --- !u!1001 &1152399305344633901
 PrefabInstance:

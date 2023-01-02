@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
-    public GameObject bullet;
-    public float fireRate;
-    public Transform[] shotSpawn;
-    public float delayShootDuration;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private float fireRate;
+    [SerializeField] private Transform[] shotSpawn;
+    [SerializeField] private float delayShootDuration;
 
     void Start()
     {
